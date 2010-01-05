@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE bmix PUBLIC "-//BMix//DTD BMix 1.0//EN" "bmix.dtd">
+<bmix version="1.0" vmatrix-width="96" vmatrix-height="32" max-frame-interval="500">
+
+<!-- inputs -->
+  <input id="Debug" 	  listen-port="2331" alpha-mode="opaque" timeout="2000" />
+  <input id="Announce" 	  listen-port="2332" alpha-mode="opaque" timeout="2000" />
+
+  <input id="Graffiti"    listen-port="2330" alpha-mode="chroma-key" timeout="2000" />
+  <input id="Graffiti2"    listen-port="2333" alpha-mode="chroma-key" chroma-key-colour="#ffffff" timeout="2000" />
+  <input id="Foreground"  listen-port="2324" alpha-mode="opaque" timeout="2000" />
+  <input id="Background"  listen-port="2329" />
+
+<!-- layers, in their stack-up order -->  
+  <layer input="Debug"       x="0"  y="0"  width="96" height="32" />
+  <layer input="Announce"    x="0"  y="0"  width="96" height="32" />
+  <layer input="Graffiti"    x="0"  y="0"  width="96" height="32" />
+  <layer input="Graffiti2"    x="0"  y="0"  width="96" height="32" />
+  <layer input="Foreground"  x="0"  y="0"  width="96" height="32" />
+  <layer input="Background"  x="0"  y="0"  width="96" height="32" />
+
+
+<!-- blinkenproxy output of the whole house -->
+<dynamic-output listen-port="4242">
+	<screen x="0" y="0" width="96" height="32" />
+</dynamic-output>
+
+<!-- hacklab screen -->
+<output dest-addr="/dev/ttyLedSign00"
+	packet-format="HACKLAB_SIGN" min-frame-interval="120">
+	<screen x="0" y="0" width="96" height="32" />
+</output>
+
+</bmix>
